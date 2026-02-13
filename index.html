@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bablu Kumar Saw - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg-color: #0a0a0f;
+      --surface-color: #12121a;
+      --text-color: #e4e4e7;
+      --primary-color: #6366f1;
+      --secondary-color: #22d3ee;
+    }
+    
+    html, body { height: 100%; }
+    
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+    
+    .app-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .card-surface {
+      background: var(--surface-color);
+      border: 1px solid rgba(99, 102, 241, 0.1);
+    }
+    
+    .glow-border {
+      position: relative;
+    }
+    
+    .glow-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .glow-border:hover::before {
+      opacity: 1;
+    }
+    
+    .skill-tag {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(34, 211, 238, 0.15));
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+    
+    .timeline-dot {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+    }
+    
+    .shape-1 {
+      width: 400px;
+      height: 400px;
+      background: var(--primary-color);
+      top: -100px;
+      right: -100px;
+      animation: float1 8s ease-in-out infinite;
+    }
+    
+    .shape-2 {
+      width: 300px;
+      height: 300px;
+      background: var(--secondary-color);
+      bottom: 20%;
+      left: -100px;
+      animation: float2 10s ease-in-out infinite;
+    }
+    
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-30px, 30px) rotate(10deg); }
+    }
+    
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -20px); }
+    }
+    
+    .hero-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .typing-cursor {
+      animation: blink 1s step-end infinite;
+    }
+    
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    
+    .scroll-indicator {
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+    
+    .section-fade {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .mobile-nav {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .desktop-nav { display: none; }
+      .mobile-nav { display: block; }
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="app-wrapper" id="app-wrapper"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-opacity-80 backdrop-blur-lg" style="background: rgba(10, 10, 15, 0.8);">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center"><a href="#home" class="text-xl font-bold gradient-text" id="nav-name">BKS</a> <!-- Desktop Navigation -->
+     <div class="desktop-nav flex gap-8"><a href="#home" class="nav-link text-sm font-medium hover:text-white transition-colors">Home</a> <a href="#about" class="nav-link text-sm font-medium hover:text-white transition-colors">About</a> <a href="#experience" class="nav-link text-sm font-medium hover:text-white transition-colors">Experience</a> <a href="#skills" class="nav-link text-sm font-medium hover:text-white transition-colors">Skills</a> <a href="#education" class="nav-link text-sm font-medium hover:text-white transition-colors">Education</a> <a href="#contact" class="nav-link text-sm font-medium hover:text-white transition-colors">Contact</a>
+     </div><!-- Mobile Navigation -->
+     <div class="mobile-nav"><button id="menu-btn" class="p-2 rounded-lg hover:bg-white/10 transition-colors">
+       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16" />
+       </svg></button>
+     </div>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-opacity-95 backdrop-blur-lg px-6 py-4" style="background: rgba(18, 18, 26, 0.95);">
+     <div class="flex flex-col gap-4"><a href="#home" class="py-2 text-sm font-medium hover:text-white transition-colors">Home</a> <a href="#about" class="py-2 text-sm font-medium hover:text-white transition-colors">About</a> <a href="#experience" class="py-2 text-sm font-medium hover:text-white transition-colors">Experience</a> <a href="#skills" class="py-2 text-sm font-medium hover:text-white transition-colors">Skills</a> <a href="#education" class="py-2 text-sm font-medium hover:text-white transition-colors">Education</a> <a href="#contact" class="py-2 text-sm font-medium hover:text-white transition-colors">Contact</a>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="home" class="relative min-h-screen flex items-center justify-center px-6 pt-20">
+    <div class="floating-shapes">
+     <div class="shape shape-1"></div>
+     <div class="shape shape-2"></div>
+    </div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+     <div class="hero-code text-sm mb-6 opacity-60"><span style="color: var(--secondary-color);">const</span> developer = <span style="color: var(--primary-color);">{</span>
+     </div>
+     <h1 id="hero-title" class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"><span class="gradient-text">BABLU KUMAR SAW</span></h1>
+     <p id="hero-subtitle" class="text-xl md:text-2xl font-light mb-8 opacity-80">Web Developer &amp; Problem Solver</p>
+     <div class="hero-code text-sm mb-8 opacity-60"><span style="color: var(--primary-color);">}</span><span class="typing-cursor">|</span>
+     </div>
+     <div class="flex flex-wrap justify-center gap-4 mb-12"><a href="#contact" class="px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));"> Get In Touch </a> <a href="#experience" class="px-8 py-3 rounded-full font-medium border border-white/20 hover:bg-white/10 transition-all duration-300"> View Work </a>
+     </div>
+     <div class="flex justify-center gap-6"><a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-3 rounded-full card-surface hover:scale-110 transition-transform" aria-label="GitHub">
+       <svg width="24" height="24" fill="currentColor" viewbox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+       </svg></a> <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-3 rounded-full card-surface hover:scale-110 transition-transform" aria-label="LinkedIn">
+       <svg width="24" height="24" fill="currentColor" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+       </svg></a> <a href="#" target="_blank" rel="noopener noreferrer" class="p-3 rounded-full card-surface hover:scale-110 transition-transform" aria-label="Portfolio">
+       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+       </svg></a>
+     </div>
+     <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" class="opacity-50"><path d="M12 5v14M19 12l-7 7-7-7" />
+      </svg>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+     <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center"><span class="gradient-text">About Me</span></h2>
+     <div class="card-surface rounded-2xl p-8 md:p-12 glow-border">
+      <p id="about-text" class="text-lg leading-relaxed opacity-90">Motivated web developer with a strong foundation in HTML, CSS, and JavaScript, building responsive and user-friendly web applications. Proficient in Java and SQL, with a solid understanding of backend logic, database management, and React basics for dynamic interfaces. Experienced with Git and continuously improving problem-solving skills through data structures and algorithms practice.</p>
+      <div class="mt-8 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+       <div>
+        <div class="text-3xl font-bold gradient-text">
+         79.8%
+        </div>
+        <div class="text-sm opacity-60 mt-1">
+         B.Tech Score
+        </div>
+       </div>
+       <div>
+        <div class="text-3xl font-bold gradient-text">
+         94.6%
+        </div>
+        <div class="text-sm opacity-60 mt-1">
+         10th Score
+        </div>
+       </div>
+       <div>
+        <div class="text-3xl font-bold gradient-text">
+         2+
+        </div>
+        <div class="text-sm opacity-60 mt-1">
+         Certifications
+        </div>
+       </div>
+       <div>
+        <div class="text-3xl font-bold gradient-text">
+         10+
+        </div>
+        <div class="text-sm opacity-60 mt-1">
+         Skills
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Experience Section -->
+   <section id="experience" class="py-24 px-6" style="background: var(--surface-color);">
+    <div class="max-w-4xl mx-auto">
+     <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center"><span class="gradient-text">Experience</span></h2>
+     <div class="relative">
+      <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-indigo-500 to-cyan-400"></div>
+      <div class="relative pl-8 md:pl-0 md:pr-1/2 md:text-right mb-12">
+       <div class="timeline-dot absolute left-0 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full"></div>
+       <div class="card-surface rounded-2xl p-6 md:mr-8 glow-border">
+        <div class="text-sm font-medium mb-2" style="color: var(--secondary-color);">
+         Jul 2025 – Aug 2025
+        </div>
+        <h3 class="text-xl font-bold mb-2">Web Development Intern</h3>
+        <h4 class="text-lg opacity-70 mb-4">Cognifyz Technologies</h4>
+        <div class="space-y-4 text-left">
+         <div class="card-surface rounded-lg p-4">
+          <h5 class="font-semibold mb-2" style="color: var(--primary-color);">Responsive Portfolio Design</h5>
+          <ul class="text-sm opacity-80 space-y-2">
+           <li>• Used Bulma/UIkit frameworks for responsive card components</li>
+           <li>• Implemented responsive grid layouts</li>
+           <li>• Converted designs into responsive layouts using CSS media queries</li>
+           <li>• Created mobile-friendly navigation with hamburger menus</li>
+          </ul>
+         </div>
+         <div class="card-surface rounded-lg p-4">
+          <h5 class="font-semibold mb-2" style="color: var(--primary-color);">Image Manipulation</h5>
+          <ul class="text-sm opacity-80 space-y-2">
+           <li>• Built an image gallery using HTML and CSS</li>
+           <li>• Created automatic image slideshow with smooth transitions</li>
+           <li>• Conducted project analysis to identify and fix discrepancies</li>
+          </ul>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Skills Section -->
+   <section id="skills" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+     <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center"><span class="gradient-text">Skills &amp; Technologies</span></h2>
+     <div class="grid md:grid-cols-2 gap-6">
+      <div class="card-surface rounded-2xl p-6 glow-border">
+       <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+        <svg width="24" height="24" fill="none" stroke="var(--primary-color)" stroke-width="2" viewbox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg> Frontend Development</h3>
+       <div class="flex flex-wrap gap-2"><span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">HTML</span> <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">CSS</span> <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">JavaScript</span> <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Modern Web Technologies</span>
+       </div>
+      </div>
+      <div class="card-surface rounded-2xl p-6 glow-border">
+       <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+        <svg width="24" height="24" fill="none" stroke="var(--secondary-color)" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" />
+        </svg> Backend &amp; Database</h3>
+       <div class="flex flex-wrap gap-2"><span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Java</span> <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">SQL</span> <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Database Management</span>
+       </div>
+      </div>
+      <div class="card-surface rounded-2xl p-6 glow-border">
+       <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+        <svg width="24" height="24" fill="none" stroke="var(--primary-color)" stroke-width="2" viewbox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+        </svg> Tools &amp; Version Control</h3>
+       <div class="flex flex-wrap gap-2"><span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Git</span> <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">GitOps</span>
+       </div>
+      </div>
+      <div class="card-surface rounded-2xl p-6 glow-border">
+       <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+        <svg width="24" height="24" fill="none" stroke="var(--secondary-color)" stroke-width="2" viewbox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg> Core Competencies</h3>
+       <div class="flex flex-wrap gap-2"><span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">DSA</span> <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Problem Solving</span> <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Analysis &amp; Debugging</span> <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Operating System</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Education Section -->
+   <section id="education" class="py-24 px-6" style="background: var(--surface-color);">
+    <div class="max-w-4xl mx-auto">
+     <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center"><span class="gradient-text">Education</span></h2>
+     <div class="space-y-6">
+      <div class="card-surface rounded-2xl p-6 glow-border">
+       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+         <div class="text-sm font-medium mb-1" style="color: var(--secondary-color);">
+          Jul 2023 – Jun 2027 (Currently Pursuing)
+         </div>
+         <h3 class="text-xl font-bold">Bachelor of Technology (CSE)</h3>
+         <p class="opacity-70">Vivekananda Global University, Jaipur</p>
+        </div>
+        <div class="text-right">
+         <div class="text-3xl font-bold gradient-text">
+          79.8%
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="card-surface rounded-2xl p-6 glow-border">
+       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+         <div class="text-sm font-medium mb-1" style="color: var(--secondary-color);">
+          Jun 2023
+         </div>
+         <h3 class="text-xl font-bold">Higher Secondary Certificate</h3>
+         <p class="opacity-70">Jagdish Prasad Kushwaha College of Competence • JAC Board</p>
+        </div>
+        <div class="text-right">
+         <div class="text-3xl font-bold gradient-text">
+          79.8%
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="card-surface rounded-2xl p-6 glow-border">
+       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+         <div class="text-sm font-medium mb-1" style="color: var(--secondary-color);">
+          May 2021
+         </div>
+         <h3 class="text-xl font-bold">Senior Secondary Certificate</h3>
+         <p class="opacity-70">Baddiha High School • JAC Board</p>
+        </div>
+        <div class="text-right">
+         <div class="text-3xl font-bold gradient-text">
+          94.6%
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Achievements -->
+     <div class="mt-12">
+      <h3 class="text-2xl font-bold mb-6 text-center">Certifications</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+       <div class="card-surface rounded-xl p-4 flex items-center gap-4 glow-border">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
+         <svg width="24" height="24" fill="white" viewbox="0 0 24 24"><path d="M12 15l-2 5-3-3-5 1 3-4-2-5 5 1 3-4 3 4 5-1-2 5 3 4-5-1-3 3z" />
+         </svg>
+        </div>
+        <div>
+         <h4 class="font-semibold">Introduction to Java</h4>
+         <p class="text-sm opacity-60">Coursera Certificate</p>
+        </div>
+       </div>
+       <div class="card-surface rounded-xl p-4 flex items-center gap-4 glow-border">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
+         <svg width="24" height="24" fill="white" viewbox="0 0 24 24"><path d="M12 15l-2 5-3-3-5 1 3-4-2-5 5 1 3-4 3 4 5-1-2 5 3 4-5-1-3 3z" />
+         </svg>
+        </div>
+        <div>
+         <h4 class="font-semibold">Introduction to OOPs with Java</h4>
+         <p class="text-sm opacity-60">Coursera Certificate</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+     <h2 class="text-3xl md:text-4xl font-bold mb-6"><span class="gradient-text">Let's Connect</span></h2>
+     <p class="text-lg opacity-70 mb-12 max-w-2xl mx-auto">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+     <div class="flex flex-wrap justify-center gap-4"><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-6 py-3 rounded-full card-surface hover:scale-105 transition-transform glow-border">
+       <svg width="20" height="20" fill="currentColor" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+       </svg> LinkedIn </a> <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-6 py-3 rounded-full card-surface hover:scale-105 transition-transform glow-border">
+       <svg width="20" height="20" fill="currentColor" viewbox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+       </svg> GitHub </a> <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-6 py-3 rounded-full card-surface hover:scale-105 transition-transform glow-border">
+       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+       </svg> Portfolio </a>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-8 px-6 border-t border-white/10">
+    <div class="max-w-4xl mx-auto text-center">
+     <p class="text-sm opacity-50">© 2025 Bablu Kumar Saw. Crafted with passion.</p>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      hero_title: 'BABLU KUMAR SAW',
+      hero_subtitle: 'Web Developer & Problem Solver',
+      about_text: 'Motivated web developer with a strong foundation in HTML, CSS, and JavaScript, building responsive and user-friendly web applications. Proficient in Java and SQL, with a solid understanding of backend logic, database management, and React basics for dynamic interfaces. Experienced with Git and continuously improving problem-solving skills through data structures and algorithms practice.',
+      background_color: '#0a0a0f',
+      surface_color: '#12121a',
+      text_color: '#e4e4e7',
+      primary_color: '#6366f1',
+      secondary_color: '#22d3ee',
+      font_family: 'Sora',
+      font_size: 16
+    };
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Close mobile menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    async function onConfigChange(config) {
+      const heroTitle = document.getElementById('hero-title');
+      const heroSubtitle = document.getElementById('hero-subtitle');
+      const aboutText = document.getElementById('about-text');
+      
+      if (heroTitle) {
+        heroTitle.innerHTML = `<span class="gradient-text">${config.hero_title || defaultConfig.hero_title}</span>`;
+      }
+      
+      if (heroSubtitle) {
+        heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      }
+      
+      if (aboutText) {
+        aboutText.textContent = config.about_text || defaultConfig.about_text;
+      }
+      
+      // Apply colors
+      const root = document.documentElement;
+      root.style.setProperty('--bg-color', config.background_color || defaultConfig.background_color);
+      root.style.setProperty('--surface-color', config.surface_color || defaultConfig.surface_color);
+      root.style.setProperty('--text-color', config.text_color || defaultConfig.text_color);
+      root.style.setProperty('--primary-color', config.primary_color || defaultConfig.primary_color);
+      root.style.setProperty('--secondary-color', config.secondary_color || defaultConfig.secondary_color);
+      
+      // Apply font
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      document.body.style.fontFamily = `'${fontFamily}', sans-serif`;
+      
+      // Apply font size scaling
+      const baseSize = config.font_size || defaultConfig.font_size;
+      document.body.style.fontSize = `${baseSize}px`;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              config.primary_color = value;
+              window.elementSdk.setConfig({ primary_color: value });
+            }
+          },
+          {
+            get: () => config.secondary_color || defaultConfig.secondary_color,
+            set: (value) => {
+              config.secondary_color = value;
+              window.elementSdk.setConfig({ secondary_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['hero_title', config.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+        ['about_text', config.about_text || defaultConfig.about_text]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cd5874a15e591ca',t:'MTc3MDk5ODMyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
